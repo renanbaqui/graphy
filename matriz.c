@@ -44,7 +44,7 @@ int main(int argc,char* argv[]) {
 		a[i_] = (int *)malloc(2 * sizeof(int));
     }
 
-	// inicializa bando de gente
+	
 	FILE *Arquivo = NULL;
 	int **Matriz = NULL;
 	int *Visitado;
