@@ -6,8 +6,6 @@
 #include "fila.h"
 #include <limits.h>
 
-/* lista de adjacencia */
-
 struct vizinhos
 {
     int valor;
@@ -124,7 +122,7 @@ int main(int argc,char* argv[])
     }
 
     char json_ext[] = ".json"; 
-    //Se o parametro tem extensão .json, então procesa com funções de parse.c (incluido com header)
+    //Se o parametro tem extensão .json, então processa com funções de parse.c (incluido com header)
     if(strstr(argv[1],json_ext)==NULL){
       if(DEBUG_messages==1) printf("Arquivo txt\n");
     }else{
@@ -406,7 +404,7 @@ void InsereVerticeFim(struct vertice** p, int v, int* N)
 
     else
     {
-        if(DEBUG_messages==3 && aux==1) printf("Inserindo Vertice no Fim\n");
+        if(DEBUG_messages==3 && aux==1) printf("Inserindo Vertice no Fim.\n");
         struct vertice* elem = criaVertice(v);
         elem->prox = NULL;
         elem->listavizinhos = NULL;
@@ -940,7 +938,7 @@ int BuscaLarguraFord(struct vertice* ListaVerticeDir, int s, int t, int parent[]
   visited[s] = 1; 
   parent[s] = -1; 
 
-  // Busca Por largura estandar acrescentando os detalhes da capacidade e o pai (parent) 
+  // Busca Por largura acrescentando os detalhes da capacidade e o pai (parent) 
   while (!filaVazia()) 
   { 
   int u = sacaFila();
@@ -963,7 +961,7 @@ int BuscaLarguraFord(struct vertice* ListaVerticeDir, int s, int t, int parent[]
         p = p->prox;
       }
   }
-  // Se o fim (o vertice t) foi visitado começando desde a fonte (s), então retorna  
+  // Se o fim (o vertice t) foi visitado começando da fonte (s), então retorna  
   // 1, senão 0 
   return (visited[t] == 1); 
 
@@ -974,7 +972,7 @@ int min(int a, int b){
 	else return a;
 }
 
-// Retorna o fluxo máximo desde s a t para o grafo 
+// Retorna o fluxo máximo de s a t para o grafo 
 int fordFulkerson(struct vertice* ListaVerticeDir, int s, int t, int debug, int vertices, int arestas) 
 { 
     int u, v, i, j; 
@@ -985,7 +983,7 @@ int fordFulkerson(struct vertice* ListaVerticeDir, int s, int t, int debug, int 
     // Aumenta o fluxo enquanto existe um caminho da fonte (s) até o fim (t) 
     while (BuscaLarguraFord(ListaVerticeDir, s, t, parent, vertices)) 
     { 
-        // Achar a capacidade minimal residual das arestas ao longo do 
+        // Achar a capacidade minima residual das arestas ao longo do 
         // caminho preenchido por BuscaLarguraFord. 
         int path_flow = INT_MAX; 
         for (v=t; v!=s; v=parent[v]) 
@@ -997,7 +995,7 @@ int fordFulkerson(struct vertice* ListaVerticeDir, int s, int t, int debug, int 
             path_flow = min(path_flow, vizinhoV->capacidad); 
         } 
         if(DEBUG_messages==3) printf("path_flow: %d \n",path_flow);
-        // atualizamos a capacidades residuais das arestas e arestas reversas
+        // Atualizamos a capacidades residuais das arestas e arestas reversas
         // ao longo do caminho
         for (v=t; v != s; v=parent[v]) 
         { 
