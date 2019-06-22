@@ -118,7 +118,7 @@ int main(int argc,char* argv[]) {
 	}
 	////////////////////////////////////////////////////////////
 
-	// le arestas e marca elas como existentes (iguais a um) na matriz
+	// Le arestas e marca elas como existentes (iguais a um) na matriz
 	for (i = 0; i < arestas; i++) {
 		 if(json_){
         v1 = a[i][0];
@@ -273,7 +273,7 @@ int main(int argc,char* argv[]) {
 
   //Obtendo a floresta geradora, funcao void que printa as arestas que existem nela
   //ObterFlorestaGeradora(Matriz, vertices, Descoberta, Explorada, Visitado);
-	// libera e fecha geral
+	
 	for (i = 0; i < vertices; i++) {
 		free(Matriz[i]);
 	}
@@ -284,7 +284,7 @@ int main(int argc,char* argv[]) {
 	fclose(Arquivo);
 	////////////////////////////////////////////////////////
 
-	// maravilha
+	
 	return 0;
 }
 
@@ -357,7 +357,7 @@ void Busca(
 	int i, j;
 	for (i = 0; i < vertices; i++) {
 		for (j = 0; j < vertices; j++) {
-			// checa se a aresta existe, se o vertice ja foi visitado e se a
+			// Checa se a aresta existe, se o vertice ja foi visitado e se a
 			// aresta nao foi explorada
 			if (i < j && Matriz[i][j] == 1){
 				if(DEBUG_messages==3) printf("Vamos da aresta %d a %d\n",i,j);
@@ -434,9 +434,7 @@ void BuscaCompleta(
 	free(Visitado);
 
 	// printf("Tempo Busca completa:%f\n",(clock() - tempo) / (double)CLOCKS_PER_SEC);
-   //Tempo 0.000010 para 5 vertices e 6 arestas
-   //Tempo 0.000078 para 50 vertices e 49 arestas
-   //Tempo 0.000221 para 100 vertices e 100 arestas
+   
 }
 
 int EhConexo(
@@ -1162,7 +1160,7 @@ int BuscaLarguraFord(int **rGraph, int s, int t, int parent[], int vertices)
     visited[s] = 1; 
     parent[s] = -1; 
   
-    // Busca Por largura estandar acrescentando os detalhes da capacidade e o pai (parent)  
+    // Busca por largura acrescentando os detalhes da capacidade e o pai (parent)  
     while (!filaVazia()) 
     { 
 		int u = sacaFila();
@@ -1187,7 +1185,7 @@ int min(int a, int b){
 	if (a>b) return b;
 	else return a;
 }
-// Retorna o fluxo máximo desde s a t para o grafo 
+// Retorna o fluxo máximo de s a t para o grafo 
 int fordFulkerson(int **grafo, int s, int t, int debug, int vertices) 
 { 
     int u, v, i, j; 
@@ -1212,10 +1210,10 @@ int fordFulkerson(int **grafo, int s, int t, int debug, int vertices)
   
     int max_flow = 0;  // Não tem fluxo inicialmente 
 	 int count = 0;
-    // Aumenta o fluxo mientras que existe um caminho desde a fonte (s) até o fim (t)  
+    // Aumenta o fluxo enquanto existe um caminho desde a fonte (s) até o fim (t)  
     while (BuscaLarguraFord(rGraph, s, t, parent, vertices)) 
     { 
-        // Achar a capacidade minimal residual das arestas ao longo do 
+        // Achar a capacidade minima residual das arestas ao longo do 
         // caminho preenchido por BuscaLarguraFord.  
         int path_flow = INT_MAX; 
         for (v=t; v!=s; v=parent[v]) 
@@ -1226,7 +1224,7 @@ int fordFulkerson(int **grafo, int s, int t, int debug, int vertices)
         } 
 		if(DEBUG_messages==3) printf("path_flow: %d \n",path_flow);
   
-         // atualizamos a capacidades residuais das arestas e arestas reversas
+        // Atualizamos a capacidades residuais das arestas e arestas reversas
         // ao longo do caminho
         for (v=t; v != s; v=parent[v]) 
         { 
@@ -1239,7 +1237,7 @@ int fordFulkerson(int **grafo, int s, int t, int debug, int vertices)
             
         } 
   
-        // Acrecentamos o caminho do fluxo ao fluxo total
+        // Acrescentamos o caminho do fluxo ao fluxo total
         max_flow += path_flow; 
 		count++;
         if(count>20000){
@@ -1254,7 +1252,7 @@ int fordFulkerson(int **grafo, int s, int t, int debug, int vertices)
 
 
 int prepare_fordfulk(int *ve,int **ar,int *ca, int *vertices, int *arestas, int debug, int s, int t){
-	//creamos uma matriz nova que não é simétrica, pois o grafo para fordfulk é direccionado
+	//Criamos uma matriz nova que não é simétrica, pois o grafo para fordfulk é direcionado
 	int **Matriz = NULL;
 	int i,j, v1, v2;
 	// dinamicamente aloca matriz N x N, preenche com zeros
