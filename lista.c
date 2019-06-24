@@ -891,9 +891,9 @@ void InsereVizinhoFimCapacidade(struct vizinhos** p, int v, int capacidade)
 }
 
 
-void AdicionaArestaDireccionado(struct vertice** p, int u, int v, int c)
+void AdicionaArestaDirecionado(struct vertice** p, int u, int v, int c)
 {
-    //Somente incluimos o vizinho no vertice u porque é grafo direccionado
+    //Somente incluimos o vizinho no vertice u porque é grafo direcionado
     struct vertice* VerticeU = BuscaVertice(*p, u);
     
     //Mas, existe já essa aresta com por exemplo valor 0 de outra inversa? 
@@ -1043,7 +1043,7 @@ int prepare_fordfulk(int *ve,int **ar,int *ca, struct ArestaRotulada** E, int ve
     for(i = 0; i < arestas; i++)
     {
       
-      AdicionaArestaDireccionado(&ListaVerticeDir, (*E)[i].v1, (*E)[i].v2, ca[i]);
+      AdicionaArestaDirecionado(&ListaVerticeDir, (*E)[i].v1, (*E)[i].v2, ca[i]);
       
     }
     
