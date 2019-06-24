@@ -1272,7 +1272,7 @@ int prepare_fordfulk(int *ve,int **ar,int *ca, int *vertices, int *arestas, int 
         v1 = ar[i][0];
         v2 = ar[i][1];		
 		Matriz[v1][v2] = ca[i];
-		//Cada aresta é direccionada (i,j) não equivale a (j,i)
+		//Cada aresta é direcionada (i,j) não equivale a (j,i)
 	}
 	
 	
