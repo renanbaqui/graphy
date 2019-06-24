@@ -1,4 +1,4 @@
 # Otimização em Grafos
-*Professor Igor Machado Coelho*
+*Professor Dr. Igor Machado Coelho*
 
 *Avaliação 1*
