@@ -60,13 +60,13 @@ void ImprimeVizinhosDeVertice(struct vertice*, int);
 int prepare_fordfulk(int *ve,int **ar,int *ca, struct ArestaRotulada** E, int vertices, int arestas, int debug, int s, int t);
 
 int DEBUG_messages = 1;
-int aux = 0;//for debugging some messages
+int aux = 0; // Para fazer o debug de algumas mensagens.
 
 int main(int argc,char* argv[])
 {
 	  int LIMITE_ARESTAS = 400000;
     int v[1000];
-    int c[10000]; //limite para capacidade de arestas em grafos direcionados. Para eles o limite de arestas é 10000
+    int c[10000]; // Limite para capacidade de arestas em grafos direcionados, o limite de arestas é 10000.
     int json_ = 0;
 
     int **a = NULL;
@@ -77,12 +77,7 @@ int main(int argc,char* argv[])
     }
 
     
-    //ListaVertice = no cabeca da lista encadeada
-    //VerticesVisitados = vetor onde cada casa representa seu respectivo
-    //vertice e seu valor (1 ou 0) representa se esse vertice foi visitado ou nao
-    
-    //ListaArestas = lista de arestas, seus vertices e se essas foram exploradas
-    // e/ou descobertas (definida pelo struct ArestaRotulada acima da main)
+   
 
     FILE* Arquivo = NULL; struct vertice* ListaVertice = NULL; 
     struct vertice* FlorestaGeradora = NULL;
@@ -90,7 +85,7 @@ int main(int argc,char* argv[])
     int VerticesAdicionados = 0; int VerticesAdiFlor = 0; struct vertice* TempVert;
     int* VerticesVisitados = NULL; struct ArestaRotulada* ListaArestas = NULL;
     int* Dist = NULL;
-    ////////////////////////////////////////////////////
+    
 	
     char BuscaGrafo_[] = "BuscaGrafo"; 
     char BuscaCompleta_[] = "BuscaCompleta";
@@ -117,12 +112,12 @@ int main(int argc,char* argv[])
     }
     if(argc>=4) 
     { 
-			//O terceiro parámetro permite enviar como saida somente o tempo de execução.
+			// O terceiro parâmetro permite enviar como saida somente o tempo de execução.
 			DEBUG_messages = atoi(argv[3]);
     }
 
     char json_ext[] = ".json"; 
-    //Se o parametro tem extensão .json, então processa com funções de parse.c (incluido com header)
+    //Se o parametro tem extensão .json, então processa com funções de parse.c (incluido com header).
     if(strstr(argv[1],json_ext)==NULL){
       if(DEBUG_messages==1) printf("Arquivo txt\n");
     }else{
@@ -141,7 +136,7 @@ int main(int argc,char* argv[])
       fscanf(Arquivo, "%d\t%d", &VerticesLidos , &arestas);
       if(DEBUG_messages==1) printf("Lendo arquivo: %s\n",argv[1]);
       if(DEBUG_messages==1) printf("Vertices: %d - Arestas: %d\n",VerticesLidos,arestas);
-      ////////////////////////////////////////////////////  
+        
     }
     
 
@@ -149,7 +144,7 @@ int main(int argc,char* argv[])
     VerticesVisitados = (int*) malloc(sizeof(int) * VerticesLidos);
     Dist = (int*) malloc(sizeof(int) * VerticesLidos);
     ListaArestas = (struct ArestaRotulada*) malloc(sizeof(struct ArestaRotulada) * arestas);
-    //ListaVertice = (struct vertice*) malloc(sizeof(struct vertice) * VerticesLidos);
+    
    
 
     for(i = 0; i < VerticesLidos; i++)
@@ -169,7 +164,7 @@ int main(int argc,char* argv[])
       }else{
         fscanf(Arquivo, "%d\t%d", &v1, &v2);        
       }
-      //printf("Aresta %d: do vertice %d ao vertice %d\n",i,v1,v2);
+      
       AdicionaAresta(&ListaVertice, v1, v2);
       ListaArestas[i].explorada = 0;
       ListaArestas[i].descoberta = 0;
@@ -178,11 +173,10 @@ int main(int argc,char* argv[])
     }
 
 
-	///////////////////////////////////////////////////////////
-  //Testando cada algoritmo e exibindo as respostas como 1(true) e 0(false)
+
   int arvore, conexo, ciclo, floresta;
 
-  clock_t tempo1; //teste de tempo iniciado
+  clock_t tempo1; 
 	tempo1 = clock();
 	
     if(DEBUG_messages==1) printf("Executando: %s\n",argv[2]);
@@ -215,7 +209,7 @@ int main(int argc,char* argv[])
           ExcluiVertice(&ListaVertice,atoi(argv[5]),&VerticesLidos);
       }
       else{
-          //Exclui o último vertice lido pois é o que mais esforço precisa
+          // Exclui o último vertice lido.
 			    ExcluiVertice(&ListaVertice,VerticesLidos-1,&VerticesLidos);
       }
       
@@ -311,36 +305,12 @@ int main(int argc,char* argv[])
 		
   double toMiliseconds = 1000/CLOCKS_PER_SEC;
   double interval = (clock() - tempo1) * toMiliseconds;
-  //float interval = (clock() - tempo1);
-  if(DEBUG_messages==1) printf("Tempo de %s: %.3f\n",argv[2],interval);
-	if(DEBUG_messages==0) printf("%.3f\n",interval);
-  if(DEBUG_messages==4) printf("%d,%.3f\n",VerticesLidos,interval);
-
   
-
-    //BuscaGrafo(0, &VerticesVisitados, &ListaArestas, arestas);
-
-    //BuscaCompleta(&VerticesVisitados, &ListaArestas, arestas, VerticesLidos);
-
-
-    //ObterFlorestaGeradora(&VerticesVisitados, &ListaArestas, &FlorestaGeradora, arestas, VerticesLidos);
-
-    //EhConexo(0, &VerticesVisitados, &ListaArestas, VerticesLidos, arestas); 
-    
-    //TemCiclo(&VerticesVisitados, &ListaArestas, VerticesLidos, arestas);
-    
-    
-    //EhFloresta(&VerticesVisitados, &ListaArestas, VerticesLidos, arestas);
-    
-    
-    //EhArvore(0, &VerticesVisitados, &ListaArestas, VerticesLidos, arestas);
-
-//ImprimeGrafo(ListaVertice);
-
-
-
-
-	  free(a);
+  if(DEBUG_messages==1) printf("Tempo de %s: %.3f\n",argv[2],interval);
+  if(DEBUG_messages==0) printf("%.3f\n",interval);
+  if(DEBUG_messages==4) printf("%d,%.3f\n",VerticesLidos,interval);
+  
+    free(a);
     free(ListaArestas);
     free(VerticesVisitados);
     LimpaListaVertice(&ListaVertice);
@@ -437,7 +407,7 @@ struct vertice* BuscaVertice(struct vertice* p, int v)
     {
         if (v == p->valor)
         {
-            //printf("Vertice encontrado %d\n",v);
+            
             return p;
         }
 
@@ -500,7 +470,7 @@ void ExcluiVertice(struct vertice** p, int v, int* N)
     if(*p)
     {
       if(DEBUG_messages==3) printf("ExcluiVertice %d, estou em %d\n",v,(*p)->valor);
-      //ExcluiVertice( &((*p)->prox), v, N);
+      // ExcluiVertice( &((*p)->prox), v, N);
       ExcluiVizinho( &((*p)->listavizinhos), v );
       if((*p)->valor == v)
       {
@@ -510,7 +480,7 @@ void ExcluiVertice(struct vertice** p, int v, int* N)
         free(e);
 
 
-        //(*N)--;
+        
       }
 
       else
@@ -536,7 +506,7 @@ void AdicionaAresta(struct vertice** p, int u, int v)
     struct vertice* VerticeU = BuscaVertice(*p, u);
     struct vertice* VerticeV = BuscaVertice(*p, v);
 
-    //printf("VerticeU %d - VercticeV %d\n",VerticeU->valor, VerticeV->valor);
+    
     InsereVizinhoFim( &(VerticeU->listavizinhos), v);
     InsereVizinhoFim( &(VerticeV->listavizinhos), u);
 }
@@ -749,11 +719,11 @@ void BuscaLargura(int r, int** V, struct ArestaRotulada** E, int n, int m, struc
 			if(DEBUG_messages==3) printf("Removo o vertice:%d\n",u);
       if(DEBUG_messages==3) printFila();
       struct vertice* VerticeV = BuscaVertice(p, u);
-      //printf("--->%d\n",VerticeV->valor);
+      // printf("--->%d\n",VerticeV->valor);
       struct vizinhos* p = VerticeV->listavizinhos;
 
       while(p){
-        //printf("Vertice %d\n", p->valor);
+        // printf("Vertice %d\n", p->valor);
         int w = p->valor;
         if((*V)[w] == 1){
             if((*E)[w].explorada == 0){
@@ -770,7 +740,7 @@ void BuscaLargura(int r, int** V, struct ArestaRotulada** E, int n, int m, struc
       }
 
 	}
- //&(VerticeU->listavizinhos)
+ // &(VerticeU->listavizinhos)
 
 }
 
@@ -789,11 +759,11 @@ void DeterminarDistancias(int r, int** V, struct ArestaRotulada** E, int n, int 
 			if(DEBUG_messages==3) printf("Removo o vertice:%d, nivel=%d\n",u,nivel);
       if(DEBUG_messages==3) printFila();
       struct vertice* VerticeV = BuscaVertice(p, u);
-      //printf("--->%d\n",VerticeV->valor);
+      // printf("--->%d\n",VerticeV->valor);
       struct vizinhos* p = VerticeV->listavizinhos;
 
       while(p){
-        //printf("Vertice %d\n", p->valor);
+        // printf("Vertice %d\n", p->valor);
         int w = p->valor;
         if((*V)[w] == 1){
             if((*E)[w].explorada == 0){
@@ -831,7 +801,7 @@ void BuscaProfundidadeVisita(int u, int** V, struct ArestaRotulada** E, int n, i
   struct vertice* VerticeV = BuscaVertice(verti, u);
   struct vizinhos* p = VerticeV->listavizinhos;
   while(p){
-        //printf("Vertice %d\n", p->valor);
+        // printf("Vertice %d\n", p->valor);
         int w = p->valor;
         if((*V)[w] == 1){
             if((*E)[w].explorada == 0){
@@ -857,7 +827,7 @@ void prepare_dump_json(int *ve,int **ar,struct ArestaRotulada** E, int n, int m,
     struct vizinhos* q = p->listavizinhos;    
     while(q){
        int w = q->valor;
-       if(w>v){//nao foi considerado previamente
+       if(w>v){
           ar[aresta][0]=v;
           ar[aresta][1]=w;
           aresta++;
@@ -893,10 +863,10 @@ void InsereVizinhoFimCapacidade(struct vizinhos** p, int v, int capacidade)
 
 void AdicionaArestaDirecionado(struct vertice** p, int u, int v, int c)
 {
-    //Somente incluimos o vizinho no vertice u porque é grafo direcionado
+    // Somente incluimos o vizinho no vertice u porque é grafo direcionado.
     struct vertice* VerticeU = BuscaVertice(*p, u);
     
-    //Mas, existe já essa aresta com por exemplo valor 0 de outra inversa? 
+     
     struct vizinhos* vizinhoU= BuscaVizinho(VerticeU->listavizinhos,v);
     if(vizinhoU==NULL){
      
@@ -906,9 +876,9 @@ void AdicionaArestaDirecionado(struct vertice** p, int u, int v, int c)
       vizinhoU->capacidade = c;
     }
 
-    //Para a aresta inversa, a criamos mas colocamos capacidade 0, pois o algoritmo precisa atualizar esta 
-    //capacidade inversa
-    //Mas, existe já essa aresta?
+    // Para a aresta inversa, a criamos mas colocamos capacidade 0, pois o algoritmo precisa atualizar esta 
+    // capacidade inversa
+    
     struct vertice* VerticeV = BuscaVertice(*p, v);
     struct vizinhos* vizinhoV= BuscaVizinho(VerticeV->listavizinhos,u);
     if(vizinhoV==NULL){
@@ -916,14 +886,14 @@ void AdicionaArestaDirecionado(struct vertice** p, int u, int v, int c)
       InsereVizinhoFimCapacidade( &(VerticeV->listavizinhos), u, 0);
     }else{
      
-      //Não fazemos nada pois iamos colocar um zero.
+      
     }
     
    
 }
 
-/* Retorna 1 se existe um caminho desde fonte s até fonte t no grafo residual.  
- também preenche o pai (parent[]) para guardar o caminho */
+// Retorna 1 se existe um caminho da fonte s até fonte t no grafo residual.  
+// Também preenche o pai (parent[]) para guardar o caminho.
 int BuscaLarguraFord(struct vertice* ListaVerticeDir, int s, int t, int parent[], int vertices) 
 { 
   if(DEBUG_messages==3) printf("Busca?: s=%d t=%d\n",s,t);
@@ -938,7 +908,7 @@ int BuscaLarguraFord(struct vertice* ListaVerticeDir, int s, int t, int parent[]
   visited[s] = 1; 
   parent[s] = -1; 
 
-  // Busca Por largura acrescentando os detalhes da capacidade e o pai (parent) 
+  // Busca por largura acrescentando os detalhes da capacidade e o pai (parent). 
   while (!filaVazia()) 
   { 
   int u = sacaFila();
@@ -961,8 +931,7 @@ int BuscaLarguraFord(struct vertice* ListaVerticeDir, int s, int t, int parent[]
         p = p->prox;
       }
   }
-  // Se o fim (o vertice t) foi visitado começando da fonte (s), então retorna  
-  // 1, senão 0 
+  // Se o fim (o vertice t) foi visitado começando da fonte (s), então retorna 1, senão 0.
   return (visited[t] == 1); 
 
 }
@@ -972,15 +941,15 @@ int min(int a, int b){
 	else return a;
 }
 
-// Retorna o fluxo máximo de s a t para o grafo 
+// Retorna o fluxo máximo de s a t para o grafo. 
 int fordFulkerson(struct vertice* ListaVerticeDir, int s, int t, int debug, int vertices, int arestas) 
 { 
     int u, v, i, j; 
-    int parent[vertices];  // Array que sera preenchido por BuscaLargura Ford para guardar o caminho 
-    int max_flow = 0;  // Não tem fluxo inicialmente
+    int parent[vertices];  	// Array que sera preenchido por BuscaLarguraFord para guardar o caminho. 
+    int max_flow = 0;  		// Não tem fluxo inicialmente.
   
    int count = 0;
-    // Aumenta o fluxo enquanto existe um caminho da fonte (s) até o fim (t) 
+    // Aumenta o fluxo enquanto existe um caminho da fonte (s) até o fim (t). 
     while (BuscaLarguraFord(ListaVerticeDir, s, t, parent, vertices)) 
     { 
         // Achar a capacidade minima residual das arestas ao longo do 
@@ -996,7 +965,7 @@ int fordFulkerson(struct vertice* ListaVerticeDir, int s, int t, int debug, int 
         } 
         if(DEBUG_messages==3) printf("path_flow: %d \n",path_flow);
         // Atualizamos a capacidades residuais das arestas e arestas reversas
-        // ao longo do caminho
+        // ao longo do caminho.
         for (v=t; v != s; v=parent[v]) 
         { 
             u = parent[v];
@@ -1012,7 +981,7 @@ int fordFulkerson(struct vertice* ListaVerticeDir, int s, int t, int debug, int 
             
         } 
   
-        // Acrecentamos o caminho do fluxo ao fluxo total
+        // Acrescentamos o caminho do fluxo ao fluxo total.
         max_flow += path_flow; 
         count++;
         if(count>4200000){
@@ -1021,18 +990,18 @@ int fordFulkerson(struct vertice* ListaVerticeDir, int s, int t, int debug, int 
         }
     } 
    
-    // Retornamos o fluxo total
+    // Retornamos o fluxo total.
     return max_flow; 
 
 }
 
 int prepare_fordfulk(int *ve,int **ar,int *ca, struct ArestaRotulada** E, int vertices, int arestas, int debug, int s, int t){
-	//Criamos uma estrutura adicional para um grafo direcionado com lista, independente do grafo já existente
-  //para os outros métodos
+	// Criamos uma estrutura adicional para um grafo direcionado com lista, independente do grafo já existente
+  	// para os outros métodos.
   int i;
   int aux;
   struct vertice* ListaVerticeDir = NULL;
-  //printf("vertices %d\n",vertices);
+  	//printf("vertices %d\n",vertices);
   
   
   for(i = 0; i < vertices; i++)
