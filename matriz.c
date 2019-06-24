@@ -34,7 +34,7 @@ int fordFulkerson(int **, int , int , int, int);
 int main(int argc,char* argv[]) {
 	int LIMITE_ARESTAS = 400000;
 	int v[1000];
-	int c[10000]; //limite para capacidade de arestas em grafos direcionados. Para eles o limite de arestas é 10000
+	int c[10000]; //Limite para capacidade de arestas em grafos direcionados. Para eles o limite de arestas é 10000.
   	int json_ = 0;
 
 	int **a = NULL;
@@ -78,13 +78,13 @@ int main(int argc,char* argv[]) {
 		return 0;
 	}
 	if(argc>=4){ 
-		//O terceiro parámetro permite enviar como saida somente o tempo de execução.
+		// O terceiro parâmetro permite enviar como saida somente o tempo de execução.
 		DEBUG_messages = atoi(argv[3]);
 	}
 
 
     char json_ext[] = ".json"; 
-    //Se o parametro tem extensão .json, então procesa com funções de parse.c (incluido com header)
+    // Se o parametro tem extensão .json, então processa com funções de parse.c (incluido com header).
     if(strstr(argv[1],json_ext)==NULL){
       	if(DEBUG_messages==1) printf("Arquivo txt\n");
     }else{
@@ -99,13 +99,12 @@ int main(int argc,char* argv[]) {
     }
 
 	if(json_==0){
-		// abre arquivo, le N e M
+		
 		Arquivo = fopen(argv[1], "r");
 		fscanf(Arquivo, "%d\t%d", &vertices, &arestas);
-		///////////////////////////////////////////////
+		
 	}
 
-	// dinamicamente aloca matriz N x N, preenche com zeros
 	Matriz = (int **)malloc(vertices * sizeof(int *));
 	for (i = 0; i < vertices; i++) {
 		Matriz[i] = (int *)malloc(vertices * sizeof(int));
@@ -116,9 +115,9 @@ int main(int argc,char* argv[]) {
 			Matriz[i][j] = 0;
 		}
 	}
-	////////////////////////////////////////////////////////////
+	
 
-	// Le arestas e marca elas como existentes (iguais a um) na matriz
+	
 	for (i = 0; i < arestas; i++) {
 		 if(json_){
         v1 = a[i][0];
@@ -131,12 +130,10 @@ int main(int argc,char* argv[]) {
 		Matriz[v2][v1] = 1;
 	}
 
-	//ImprimeMatriz(Matriz, vertices);
-	///////////////////////////////////////////////////////////
-  //Testando cada algoritmo e exibindo as respostas como 1(true) e 0(false)
+	
   int arvore, conexo, ciclo, floresta;
 
-  clock_t tempo1; //teste de tempo iniciado
+  clock_t tempo1; 
 	tempo1 = clock();
 
 
@@ -255,24 +252,14 @@ int main(int argc,char* argv[]) {
 			if(DEBUG_messages==3) printf("O maximo fluxo possível eh: %d\n",result);
 		}
 		
-	//BuscaGrafo(Matriz,vertices, Descoberta,Explorada,Visitado);
-  //BuscaCompleta(Matriz,vertices, Descoberta,Explorada,Visitado);
-  //conexo = EhConexo(Matriz,vertices,Descoberta,Explorada,Visitado);
-  //arvore = EhArvore(Matriz,vertices,Descoberta,Explorada,Visitado);
-  //ciclo = TemCiclo(Matriz,vertices,Descoberta,Explorada,Visitado);
-  //floresta = EhFloresta(Matriz, vertices, Descoberta, Explorada, Visitado);
-  //float interval = (clock() - tempo1) /(double)CLOCKS_PER_SEC;
-  float toMiliseconds = 1000/CLOCKS_PER_SEC;
-  float interval = (clock() - tempo1) * toMiliseconds;
-  //float interval = (clock() - tempo1);
-  if(DEBUG_messages==1) printf("Tempo de %s: %.3f\n",argv[2],interval);
-	if(DEBUG_messages==0) printf("%.3f\n",interval);
- if(DEBUG_messages==4) printf("%d,%.3f\n",vertices,interval);
+float toMiliseconds = 1000/CLOCKS_PER_SEC;
+float interval = (clock() - tempo1) * toMiliseconds;
+  
+if(DEBUG_messages==1) printf("Tempo de %s: %.3f\n",argv[2],interval);
+if(DEBUG_messages==0) printf("%.3f\n",interval);
+if(DEBUG_messages==4) printf("%d,%.3f\n",vertices,interval);
 
- //printf("� conexo? %d\n� arvore? %d\ntem ciclo? %d\n� floresta? %d\n", conexo, arvore, ciclo, floresta);
-
-  //Obtendo a floresta geradora, funcao void que printa as arestas que existem nela
-  //ObterFlorestaGeradora(Matriz, vertices, Descoberta, Explorada, Visitado);
+ 
 	
 	for (i = 0; i < vertices; i++) {
 		free(Matriz[i]);
@@ -282,9 +269,7 @@ int main(int argc,char* argv[]) {
 	free(a);
 
 	fclose(Arquivo);
-	////////////////////////////////////////////////////////
-
-	
+		
 	return 0;
 }
 
@@ -294,10 +279,8 @@ void BuscaGrafo(
 	int **Descoberta,
 	int **Explorada,
 	int *Visitado) {
-	//clock_t tempo1; //teste de tempo iniciado
-	//tempo1 = clock();
-
-	// Cria Lista Visitados.
+	
+	// Cria lista de visitados.
 
 	Visitado = (int *)malloc(vertices * sizeof(int));
 	int i, j;
@@ -305,7 +288,7 @@ void BuscaGrafo(
 		Visitado[i] = 0;
 	}
 
-	// Cria Lista Aresta Explorada
+	// Cria lista aresta explorada.
 
 	Explorada = (int **)malloc(vertices * sizeof(int *));
 	for (i = 0; i < vertices; i++) {
@@ -318,7 +301,7 @@ void BuscaGrafo(
 		}
 	}
 
-	// Cria Lista Aresta Descoberta
+	// Cria lista aresta descoberta.
 
 	Descoberta = (int **)malloc(vertices * sizeof(int *));
 	for (i = 0; i < vertices; i++) {
@@ -335,8 +318,7 @@ void BuscaGrafo(
 
   
 
-//printf("Tempo de BuscaGrafo:%f\n",(clock() - tempo1) /
-	 //(double)CLOCKS_PER_SEC);
+
 }
 
 void Busca(
@@ -346,8 +328,7 @@ void Busca(
 	int **Descoberta,
 	int **Explorada,
 	int *Visitado) {
-	 //clock_t tempo; //teste de tempo iniciado
-	 //tempo = clock();
+	 
 
 	if (Matriz[vertice]) {
 		Visitado[vertice] = 1;
@@ -357,15 +338,14 @@ void Busca(
 	int i, j;
 	for (i = 0; i < vertices; i++) {
 		for (j = 0; j < vertices; j++) {
-			// Checa se a aresta existe, se o vertice ja foi visitado e se a
-			// aresta nao foi explorada
+			// Verifica se a aresta existe, se o vertice ja foi visitado e se a aresta nao foi explorada.
 			if (i < j && Matriz[i][j] == 1){
 				if(DEBUG_messages==3) printf("Vamos da aresta %d a %d\n",i,j);
 				if(Visitado[i] == 1 && Explorada[i][j] == 0) {
 					Explorada[i][j] = 1;				
 					Explorada[j][i] = 1;				
-					if (Visitado[j] == 0) { // se o vertice j nao for visitado, ele
-											// visita e descobre a aresta
+					if (Visitado[j] == 0) { 	// Se o vertice j nao for visitado, ele
+									// visita e descobre a aresta.
 						Visitado[j] = 1;
 						if(DEBUG_messages==3) printf("Visito o vertice %d\n",j);
 						if(DEBUG_messages==3) printf("Descoberta a aresta %d-%d\n",i,j);
@@ -377,8 +357,7 @@ void Busca(
 			}
 		}
 	}
-	//printf("Tempo Busca :%f\n",(clock() - tempo) /
-	//(double)CLOCKS_PER_SEC);
+	
 }
 
 void BuscaCompleta(
@@ -387,9 +366,8 @@ void BuscaCompleta(
 	int **Descoberta,
 	int **Explorada,
 	int *Visitado) {
-	// clock_t tempo; //teste de tempo iniciado
-	// tempo = clock();
-	// Cria Lista Visitados.
+	
+	// Cria lista de visitados.
 
 	Visitado = (int *)malloc(vertices * sizeof(int));
 	int i, j;
@@ -397,7 +375,7 @@ void BuscaCompleta(
 		Visitado[i] = 0;
 	}
 
-	// Cria Lista Aresta Explorada
+	// Cria lista aresta explorada.
 
 	Explorada = (int **)malloc(vertices * sizeof(int *));
 	for (i = 0; i < vertices; i++) {
@@ -410,7 +388,7 @@ void BuscaCompleta(
 		}
 	}
 
-	// Cria Lista Aresta Descoberta
+	// Cria lista aresta descoberta.
 
 	Descoberta = (int **)malloc(vertices * sizeof(int *));
 	for (i = 0; i < vertices; i++) {
@@ -429,12 +407,9 @@ void BuscaCompleta(
 		}
 	}
 
-  free(Descoberta);
+  	free(Descoberta);
 	free(Explorada);
-	free(Visitado);
-
-	// printf("Tempo Busca completa:%f\n",(clock() - tempo) / (double)CLOCKS_PER_SEC);
-   
+	free(Visitado);   
 }
 
 int EhConexo(
@@ -443,9 +418,8 @@ int EhConexo(
 	int **Descoberta,
 	int **Explorada,
 	int *Visitado) {
-	 //clock_t tempo; //teste de tempo iniciado
-	 //tempo = clock();
-	 //Cria Lista Visitados.
+	 
+	 //Cria lista de visitados.
 
 	Visitado = (int *)malloc(vertices * sizeof(int));
 	int i, j;
@@ -453,7 +427,7 @@ int EhConexo(
 		Visitado[i] = 0;
 	}
 
-	// Cria Lista Aresta Explorada
+	// Cria lista aresta explorada.
 
 	Explorada = (int **)malloc(vertices * sizeof(int *));
 	for (i = 0; i < vertices; i++) {
@@ -466,7 +440,7 @@ int EhConexo(
 		}
 	}
 
-	// Cria Lista Aresta Descoberta
+	// Cria lista aresta descoberta.
 
 	Descoberta = (int **)malloc(vertices * sizeof(int *));
 	for (i = 0; i < vertices; i++) {
@@ -487,11 +461,11 @@ int EhConexo(
 			return 0;
 		}
 	}
-  free(Descoberta);
+  	free(Descoberta);
 	free(Explorada);
 	free(Visitado);
 
-	 //printf("Tempo EhConexo:%f\n",(clock() - tempo) / (double)CLOCKS_PER_SEC);
+	 
    return 1;
 }
 
@@ -501,10 +475,9 @@ int TemCiclo(
 	int **Descoberta,
 	int **Explorada,
 	int *Visitado) {
-	 //clock_t tempo; //teste de tempo iniciado
-	 //tempo = clock();
+	 
 
-	// Cria Lista Visitados.
+	// Cria lista de visitados.
 
 	Visitado = (int *)malloc(vertices * sizeof(int));
 	int i, j;
@@ -512,7 +485,7 @@ int TemCiclo(
 		Visitado[i] = 0;
 	}
 
-	// Cria Lista Aresta Explorada
+	// Cria lista aresta explorada.
 
 	Explorada = (int **)malloc(vertices * sizeof(int *));
 	for (i = 0; i < vertices; i++) {
@@ -525,7 +498,7 @@ int TemCiclo(
 		}
 	}
 
-	// Cria Lista Aresta Descoberta
+	// Cria lista aresta descoberta.
 
 	Descoberta = (int **)malloc(vertices * sizeof(int *));
 	for (i = 0; i < vertices; i++) {
@@ -548,7 +521,7 @@ int TemCiclo(
 		for (j = 0; j < vertices; j++) {
 			if (i < j && Matriz[i][j] && Descoberta[i][j] == 0) {
 				if(DEBUG_messages==3) printf("Aresta nao descoberta %d-%d\n",i,j);
-				//printf("Tempo TemCliclo:%f\n",(clock() - tempo) / (double)CLOCKS_PER_SEC);
+				
         		return 1;
 			}
 		}
@@ -559,7 +532,7 @@ int TemCiclo(
 	free(Explorada);
 	free(Visitado);
  	if(DEBUG_messages==3) printf("Todas arestas descobertas.\n");
-	 //printf("Tempo TemCliclo:%f\n",(clock() - tempo) / (double)CLOCKS_PER_SEC);
+	 
    	return 0;
 }
 
@@ -569,14 +542,13 @@ int EhFloresta(
 	int **Descoberta,
 	int **Explorada,
 	int *Visitado) {
-	 //clock_t tempo; //teste de tempo iniciado
-	 //tempo = clock();
+	 
 	if (TemCiclo(Matriz, vertices, Descoberta, Explorada, Visitado) == 0) {
-		//printf("Tempo EhFloresta:%f\n",(clock() - tempo) / (double)CLOCKS_PER_SEC);
+		
     return 1;
 	}
   
-  //printf("Tempo EhFloresta:%f\n",(clock() - tempo) / (double)CLOCKS_PER_SEC);
+  
   return 0;
 	free(Descoberta);
 	free(Explorada);
@@ -594,7 +566,7 @@ int EhArvore(
 	 clock_t tempo; //teste de tempo iniciado
 	 tempo = clock();
 
-	// Cria Lista Visitados.
+	// Cria lista de visitados.
 
 	Visitado = (int *)malloc(vertices * sizeof(int));
 	int i, j;
@@ -602,7 +574,7 @@ int EhArvore(
 		Visitado[i] = 0;
 	}
 
-	// Cria Lista Aresta Explorada
+	// Cria lista aresta explorada.
 
 	Explorada = (int **)malloc(vertices * sizeof(int *));
 	for (i = 0; i < vertices; i++) {
@@ -615,7 +587,7 @@ int EhArvore(
 		}
 	}
 
-	// Cria Lista Aresta Descoberta
+	// Cria lista aresta descoberta.
 
 	Descoberta = (int **)malloc(vertices * sizeof(int *));
 	for (i = 0; i < vertices; i++) {
@@ -633,7 +605,7 @@ int EhArvore(
 	for (i = 0; i < vertices; i++) {
 
 		if (Visitado[i] == 0) {
-			//printf("Tempo EhArvore:%f\n",(clock() - tempo) / (double)CLOCKS_PER_SEC);
+			
       return 0;
 		}
 	}
@@ -647,12 +619,12 @@ int EhArvore(
 	for (i = 0; i < vertices; i++) {
 		for (j = 0; j < vertices; j++) {
 			if (Descoberta[i][j] == 0) {
-				//printf("Tempo EhArvore:%f\n",(clock() - tempo) / (double)CLOCKS_PER_SEC);
+				
         return 0;
 			}
 		}
 	}
-	//printf("Tempo EhArvore:%f\n",(clock() - tempo) / (double)CLOCKS_PER_SEC);
+	
   return 1;
 	free(Descoberta);
 	free(Explorada);
@@ -667,8 +639,7 @@ void ObterFlorestaGeradora(
 	int **Descoberta,
 	int **Explorada,
 	int *Visitado) {
-	//clock_t tempo; //teste de tempo iniciado
-  //tempo = clock();
+	
 
 
 	int i, j;
@@ -678,7 +649,7 @@ void ObterFlorestaGeradora(
 		Grafo[i] = (int *)malloc(vertices * sizeof(int));
 	}
 	
-	// Cria Lista Visitados.
+	// Cria lista de visitados.
 
 	Visitado = (int *)malloc(vertices * sizeof(int));
 
@@ -686,7 +657,7 @@ void ObterFlorestaGeradora(
 		Visitado[i] = 0;
 	}
 
-	// Cria Lista Aresta Explorada
+	// Cria lista aresta explorada.
 
 	Explorada = (int **)malloc(vertices * sizeof(int *));
 	for (i = 0; i < vertices; i++) {
@@ -699,7 +670,7 @@ void ObterFlorestaGeradora(
 		}
 	}
 
-	// Cria Lista Aresta Descoberta
+	// Cria lista aresta descoberta.
 
 	Descoberta = (int **)malloc(vertices * sizeof(int *));
 	for (i = 0; i < vertices; i++) {
@@ -739,7 +710,7 @@ void ObterFlorestaGeradora(
   }
 	free(Visitado);
 
-	//printf("Tempo ObterFlorestaGeradora:%f\n",(clock() - tempo) / (double)CLOCKS_PER_SEC);
+	
 }
 
 void ImprimeMatriz(int **Matriz, int n) {
@@ -821,11 +792,6 @@ int **AdicionaVertice(int **Matriz, int N) {
 		MatrizNova[Vertices][i] = 0;
 	}
 
-	/* for (i = 0; i < Vertices; i++) {
-		free(Matriz[i]);
-	 }*/
-	//(*N)++;	
-
 	if(DEBUG_messages==3) printf("Adicionado Vertice\n");
 
 	return MatrizNova;
@@ -859,13 +825,7 @@ int **RemoveVertice(int **Matriz, int *N, int V) {
 		}
 	}
 
-//Não libera Matriz dentro da função pois já será feito no Main
-/*	for (i = 0; i < Vertices; i++) {
-		free(Matriz[i]);
-	}*/
 
-
-	//(*N)--;
 
 	return MatrizNova;
 }
@@ -888,7 +848,7 @@ void BuscaLargura(
 		Visitado[i] = 0;
 	}
 
-	// Cria Lista Aresta Explorada
+	// Cria lista aresta explorada.
 
 	Explorada = (int **)malloc(arestas * sizeof(int *));
 	for (i = 0; i < arestas; i++) {
@@ -901,7 +861,7 @@ void BuscaLargura(
 		}
 	}
 
-	// Cria Lista Aresta Descoberta
+	// Cria lista aresta descoberta.
 
 	Descoberta = (int **)malloc(arestas * sizeof(int *));
 	for (i = 0; i < arestas; i++) {
@@ -943,7 +903,7 @@ void BuscaLargura(
         }
 	}
 
-  free(Descoberta);
+  	free(Descoberta);
 	free(Explorada);
 	free(Visitado);
 
@@ -971,7 +931,7 @@ void DeterminarDistancias(
 		Visitado[i] = 0;
 	}
 
-	// Cria Lista Aresta Explorada
+	// Cria lista aresta explorada.
 
 	Explorada = (int **)malloc(vertices * sizeof(int *));
 	for (i = 0; i < vertices; i++) {
@@ -984,7 +944,7 @@ void DeterminarDistancias(
 		}
 	}
 
-	// Cria Lista Aresta Descoberta
+	// Cria lista aresta descoberta.
 
 	Descoberta = (int **)malloc(vertices * sizeof(int *));
 	for (i = 0; i < vertices; i++) {
@@ -1009,7 +969,7 @@ void DeterminarDistancias(
       if(DEBUG_messages==3) printFila();
 			int w;
         for(w=0;w<vertices;w++){ 
-            if(Matriz[u][w]==1){ //Para todos os vizinhos desse vertice
+            if(Matriz[u][w]==1){ //Para todos os vizinhos desse vertice.
                 if (Visitado[w]==1){
                     if(Explorada[u][w]==0){
 											Explorada[u][w]=1;
@@ -1030,12 +990,9 @@ void DeterminarDistancias(
         }
 	}
 
-	/*for(i=0;i<vertices;i++){
-		printf("%d - ",Dist[i]);
-	}
-	printf("\n");*/
 	
-  free(Descoberta);
+	
+  	free(Descoberta);
 	free(Explorada);
 	free(Visitado);
 	free(Dist);
@@ -1058,7 +1015,7 @@ void BuscaProfundidade(
 		Visitado[i] = 0;
 	}
 
-	// Cria Lista Aresta Explorada
+	// Cria lista aresta explorada.
 
 	Explorada = (int **)malloc(vertices * sizeof(int *));
 	for (i = 0; i < vertices; i++) {
@@ -1071,7 +1028,7 @@ void BuscaProfundidade(
 		}
 	}
 
-	// Cria Lista Aresta Descoberta
+	// Cria lista aresta descoberta.
 
 	Descoberta = (int **)malloc(vertices * sizeof(int *));
 	for (i = 0; i < vertices; i++) {
@@ -1087,7 +1044,7 @@ void BuscaProfundidade(
 	BuscaProfundidadeVisita(Matriz,vertices,arestas,Descoberta,Explorada,Visitado,v);
 
 
-  free(Descoberta);
+  	free(Descoberta);
 	free(Explorada);
 	free(Visitado);
 
@@ -1108,7 +1065,7 @@ void BuscaProfundidadeVisita(
 
 		int w;
 		for(w=0;w<vertices;w++){ 
-				if(Matriz[u][w]==1){ //Para todos os vizinhos desse vertice
+				if(Matriz[u][w]==1){ // Para todos os vizinhos desse vertice.
 						if (Visitado[w]==1){
 								if(Explorada[u][w]==0){
 									Explorada[u][w]=1;
@@ -1145,8 +1102,9 @@ void prepare_dump_json(int *ve,int **ar,int *vertices, int *arestas,char *fileNa
 	dump_json(ve,ar,vertices,arestas,fileName,debug);	
 }
 
-/* Retorna 1 se existe um caminho desde fonte s até fonte t no grafo residual.  
- também preenche o pai (parent[]) para guardar o caminho */
+// Retorna 1 se existe um caminho desde fonte s até fonte t no grafo residual 
+// e também preenche o pai (parent[]) para guardar o caminho   
+ 
 int BuscaLarguraFord(int **rGraph, int s, int t, int parent[], int vertices) 
 { 
 	if(DEBUG_messages==3) printf("Busca?: s=%d t=%d\n",s,t);
@@ -1160,7 +1118,6 @@ int BuscaLarguraFord(int **rGraph, int s, int t, int parent[], int vertices)
     visited[s] = 1; 
     parent[s] = -1; 
   
-    // Busca por largura acrescentando os detalhes da capacidade e o pai (parent)  
     while (!filaVazia()) 
     { 
 		int u = sacaFila();
@@ -1176,8 +1133,7 @@ int BuscaLarguraFord(int **rGraph, int s, int t, int parent[], int vertices)
         } 
     } 
   
-    // Se o fim (o vertice t) foi visitado começando desde a fonte (s), então retorna  
-  	// 1, senão 0 
+    // Se o fim (o vertice t) foi visitado começando desde a fonte (s), então retorna 1, senão 0.
     return (visited[t] == 1); 
 } 
   
@@ -1185,7 +1141,7 @@ int min(int a, int b){
 	if (a>b) return b;
 	else return a;
 }
-// Retorna o fluxo máximo de s a t para o grafo 
+// Retorna o fluxo máximo de s a t para o grafo. 
 int fordFulkerson(int **grafo, int s, int t, int debug, int vertices) 
 { 
     int u, v, i, j; 
@@ -1206,15 +1162,15 @@ int fordFulkerson(int **grafo, int s, int t, int debug, int vertices)
         for (v = 0; v < vertices; v++) 
              rGraph[u][v] = grafo[u][v]; 
   
-    int parent[vertices];  // Array que sera preenchido por BuscaLargura Ford para guardar o caminho
+    int parent[vertices];  // Array que sera preenchido por BuscaLargura Ford para guardar o caminho.
   
-    int max_flow = 0;  // Não tem fluxo inicialmente 
+    int max_flow = 0;  // Não tem fluxo inicialmente. 
 	 int count = 0;
-    // Aumenta o fluxo enquanto existe um caminho desde a fonte (s) até o fim (t)  
+    // Aumenta o fluxo enquanto existe um caminho da fonte (s) até o fim (t).  
     while (BuscaLarguraFord(rGraph, s, t, parent, vertices)) 
     { 
-        // Achar a capacidade minima residual das arestas ao longo do 
-        // caminho preenchido por BuscaLarguraFord.  
+        // Achar a capacidade minima residual das arestas ao longo do caminho preenchido por BuscaLarguraFord.
+           
         int path_flow = INT_MAX; 
         for (v=t; v!=s; v=parent[v]) 
         { 
@@ -1224,8 +1180,7 @@ int fordFulkerson(int **grafo, int s, int t, int debug, int vertices)
         } 
 		if(DEBUG_messages==3) printf("path_flow: %d \n",path_flow);
   
-        // Atualizamos a capacidades residuais das arestas e arestas reversas
-        // ao longo do caminho
+        // Atualizamos a capacidades residuais das arestas e arestas reversas ao longo do caminho.
         for (v=t; v != s; v=parent[v]) 
         { 
             u = parent[v]; 
@@ -1237,7 +1192,7 @@ int fordFulkerson(int **grafo, int s, int t, int debug, int vertices)
             
         } 
   
-        // Acrescentamos o caminho do fluxo ao fluxo total
+        // Acrescentamos o caminho do fluxo ao fluxo total.
         max_flow += path_flow; 
 		count++;
         if(count>20000){
@@ -1246,16 +1201,16 @@ int fordFulkerson(int **grafo, int s, int t, int debug, int vertices)
         }
     } 
   
-    // Retornamos o fluxo total
+    // Retornamos o fluxo total.
     return max_flow; 
 } 
 
 
 int prepare_fordfulk(int *ve,int **ar,int *ca, int *vertices, int *arestas, int debug, int s, int t){
-	//Criamos uma matriz nova que não é simétrica, pois o grafo para fordfulk é direcionado
+	// Criamos uma matriz nova que não é simétrica, pois o grafo para fordfulk é direcionado.
 	int **Matriz = NULL;
 	int i,j, v1, v2;
-	// dinamicamente aloca matriz N x N, preenche com zeros
+	
 	Matriz = (int **)malloc(*vertices * sizeof(int *));
 	for (i = 0; i < *vertices; i++) {
 		Matriz[i] = (int *)malloc(*vertices * sizeof(int));
@@ -1267,14 +1222,13 @@ int prepare_fordfulk(int *ve,int **ar,int *ca, int *vertices, int *arestas, int 
 		}
 	}
 
-	// le arestas e marca elas como existentes (iguais a capacidade) na matriz
+	// Le arestas e marca elas como existentes (iguais a capacidade) na matriz.
 	for (i = 0; i < *arestas; i++) {	
         v1 = ar[i][0];
         v2 = ar[i][1];		
 		Matriz[v1][v2] = ca[i];
 		//Cada aresta é direcionada (i,j) não equivale a (j,i)
-	}
-	
+	}	
 	
 	return fordFulkerson(Matriz, s, t, debug, *vertices); 
 	
