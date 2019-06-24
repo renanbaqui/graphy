@@ -9,7 +9,7 @@
 struct vizinhos
 {
     int valor;
-    int capacidad;
+    int capacidade;
     struct vizinhos* prox;
 };
 
@@ -546,7 +546,7 @@ void ImprimeVizinhos(struct vizinhos* p)
 {
   if (p)
   {
-    printf("Vertice %d capacidade: %d\n", p->valor, p->capacidad);
+    printf("Vertice %d capacidade: %d\n", p->valor, p->capacidade);
     ImprimeVizinhos(p->prox);
   }
   else
@@ -874,17 +874,17 @@ void prepare_dump_json(int *ve,int **ar,struct ArestaRotulada** E, int n, int m,
 }
 
 
-void InsereVizinhoFimCapacidad(struct vizinhos** p, int v, int capacidad)
+void InsereVizinhoFimCapacidade(struct vizinhos** p, int v, int capacidade)
 {
     if (*p)
     {
-        InsereVizinhoFimCapacidad(&((*p)->prox), v,capacidad);
+        InsereVizinhoFimCapacidade(&((*p)->prox), v,capacidade);
     }
 
     else
     {
         struct vizinhos* elem = criaVizinho(v);
-        elem->capacidad = capacidad;
+        elem->capacidade = capacidade;
         elem->prox = NULL;
         *p = elem;
     }
@@ -900,10 +900,10 @@ void AdicionaArestaDireccionado(struct vertice** p, int u, int v, int c)
     struct vizinhos* vizinhoU= BuscaVizinho(VerticeU->listavizinhos,v);
     if(vizinhoU==NULL){
      
-      InsereVizinhoFimCapacidad( &(VerticeU->listavizinhos), v, c);
+      InsereVizinhoFimCapacidade( &(VerticeU->listavizinhos), v, c);
     }else{
      
-      vizinhoU->capacidad = c;
+      vizinhoU->capacidade = c;
     }
 
     //Para a aresta inversa, a criamos mas colocamos capacidade 0, pois o algoritmo precisa atualizar esta 
@@ -913,7 +913,7 @@ void AdicionaArestaDireccionado(struct vertice** p, int u, int v, int c)
     struct vizinhos* vizinhoV= BuscaVizinho(VerticeV->listavizinhos,u);
     if(vizinhoV==NULL){
      
-      InsereVizinhoFimCapacidad( &(VerticeV->listavizinhos), u, 0);
+      InsereVizinhoFimCapacidade( &(VerticeV->listavizinhos), u, 0);
     }else{
      
       //Não fazemos nada pois iamos colocar um zero.
@@ -951,8 +951,8 @@ int BuscaLarguraFord(struct vertice* ListaVerticeDir, int s, int t, int parent[]
       while(p){
         //printf("Vertice %d\n", p->valor);
         int w = p->valor;
-        //printf("%d -> %d :capacidad %d\n",u,w,p->capacidad);
-        if(visited[w]==0 && p->capacidad>0){
+        //printf("%d -> %d :Capacidade %d\n",u,w,p->Capacidade);
+        if(visited[w]==0 && p->capacidade>0){
             visited[w] = 1;
             parent[w] = u;  
             //if(DEBUG_messages==3) printf("Insiro:%d\n",w);
@@ -991,8 +991,8 @@ int fordFulkerson(struct vertice* ListaVerticeDir, int s, int t, int debug, int 
             u = parent[v]; 
             struct vertice* verticeU = BuscaVertice(ListaVerticeDir,u);
             struct vizinhos* vizinhoV= BuscaVizinho(verticeU->listavizinhos,v);
-            if(DEBUG_messages==3) printf("min: %d %d u=%d v=%d\n",path_flow,vizinhoV->capacidad,u,v);
-            path_flow = min(path_flow, vizinhoV->capacidad); 
+            if(DEBUG_messages==3) printf("min: %d %d u=%d v=%d\n",path_flow,vizinhoV->capacidade,u,v);
+            path_flow = min(path_flow, vizinhoV->capacidade); 
         } 
         if(DEBUG_messages==3) printf("path_flow: %d \n",path_flow);
         // Atualizamos a capacidades residuais das arestas e arestas reversas
@@ -1002,13 +1002,13 @@ int fordFulkerson(struct vertice* ListaVerticeDir, int s, int t, int debug, int 
             u = parent[v];
             struct vertice* verticeU = BuscaVertice(ListaVerticeDir,u);
             struct vizinhos* vizinhoV= BuscaVizinho(verticeU->listavizinhos,v); 
-            if(DEBUG_messages==3) printf("Capacidade de %d-%d: %d - %d \n",u,v,vizinhoV->capacidad,path_flow);
-            vizinhoV->capacidad -= path_flow; 
+            if(DEBUG_messages==3) printf("Capacidade de %d-%d: %d - %d \n",u,v,vizinhoV->capacidade,path_flow);
+            vizinhoV->capacidade -= path_flow; 
               
             struct vertice* verticeV = BuscaVertice(ListaVerticeDir,v);
             struct vizinhos* vizinhoU= BuscaVizinho(verticeV->listavizinhos,u); 
-            if(DEBUG_messages==3) printf("Capacidade de %d-%d: %d + %d \n",v,u,vizinhoU->capacidad,path_flow);
-            vizinhoU->capacidad += path_flow; 
+            if(DEBUG_messages==3) printf("Capacidade de %d-%d: %d + %d \n",v,u,vizinhoU->capacidade,path_flow);
+            vizinhoU->capacidade += path_flow; 
             
         } 
   
