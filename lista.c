@@ -2,9 +2,10 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <limits.h>
 #include "parse.h"
 #include "fila.h"
-#include <limits.h>
+
 
 struct vizinhos
 {
@@ -59,21 +60,21 @@ void prepare_dump_json(int *ve,int **ar, struct ArestaRotulada** E, int n, int m
 void ImprimeVizinhosDeVertice(struct vertice*, int);
 int prepare_fordfulk(int *ve,int **ar,int *ca, struct ArestaRotulada** E, int vertices, int arestas, int debug, int s, int t);
 
-int DEBUG_messages = 1;
-int aux = 0; // Para fazer o debug de algumas mensagens.
+int DEBUG_messages = 1;		// Para fazer o debug de algumas mensagens.
+int aux = 0; 
 
 int main(int argc,char* argv[])
 {
-	  int LIMITE_ARESTAS = 400000;
-    int v[1000];
-    int c[10000]; // Limite para capacidade de arestas em grafos direcionados, o limite de arestas é 10000.
-    int json_ = 0;
+	int LIMITE_ARESTAS = 400000;
+	int v[1000];
+    	int c[10000]; 		// Limite para capacidade de arestas em grafos direcionados, o limite de arestas é 10000.
+    	int json_ = 0;
 
-    int **a = NULL;
-    a = (int **)malloc(LIMITE_ARESTAS * sizeof(int *));
-    int i_;
-    for (i_ = 0; i_ < LIMITE_ARESTAS; i_++) {
-      a[i_] = (int *)malloc(2 * sizeof(int));
+    	int **a = NULL;
+    	a = (int **)malloc(LIMITE_ARESTAS * sizeof(int *));
+    	int i_;
+    	for (i_ = 0; i_ < LIMITE_ARESTAS; i_++) {
+      		a[i_] = (int *)malloc(2 * sizeof(int));
     }
 
     
@@ -107,18 +108,17 @@ int main(int argc,char* argv[])
 
     if(argc<3) 
     { 
-      printf("Parametros vazios: Execute assim: matriz NOME_ARQUIVO METODO");
-      return 0;
+	printf("Parametros vazios: Execute assim: matriz NOME_ARQUIVO METODO");
+	return 0;
     }
     if(argc>=4) 
-    { 
-			// O terceiro parâmetro permite enviar como saida somente o tempo de execução.
-			DEBUG_messages = atoi(argv[3]);
+    {
+	DEBUG_messages = atoi(argv[3]); 	// O terceiro parâmetro permite enviar como saida somente o tempo de execução.
     }
 
     char json_ext[] = ".json"; 
-    //Se o parametro tem extensão .json, então processa com funções de parse.c (incluido com header).
-    if(strstr(argv[1],json_ext)==NULL){
+    						
+    if(strstr(argv[1],json_ext)==NULL){		//Se o parametro tem extensão .json, então processa com funções de parse.c (incluido com header).
       if(DEBUG_messages==1) printf("Arquivo txt\n");
     }else{
       if(DEBUG_messages==1) printf("Arquivo json\n");
@@ -139,14 +139,10 @@ int main(int argc,char* argv[])
         
     }
     
-
-
     VerticesVisitados = (int*) malloc(sizeof(int) * VerticesLidos);
     Dist = (int*) malloc(sizeof(int) * VerticesLidos);
     ListaArestas = (struct ArestaRotulada*) malloc(sizeof(struct ArestaRotulada) * arestas);
     
-   
-
     for(i = 0; i < VerticesLidos; i++)
     {
       InsereVerticeFim(&ListaVertice, i, &VerticesAdicionados);
@@ -154,7 +150,6 @@ int main(int argc,char* argv[])
       VerticesVisitados[i] = 0;
       Dist[i]= INT_MAX;
     }
-
 
     for(i = 0; i < arestas; i++)
     {
