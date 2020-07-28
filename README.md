@@ -7,7 +7,7 @@ Implementação Computacional de Algoritmos em Grafos e o Problema do Fluxo Máx
 
 # OEG
 
-OEG is an implementation of graph algorithms and it provides a solution to the maximum flow problem (using the Ford-Fulkerson method), mostly written in C language.
+OEG is a computational implementation of finite graph algorithms (represented separately in an adjacency matrix and adjacency list) and it also provides a solution to the maximum flow problem (using the Ford-Fulkerson method), mostly written in C language.
 
 ## Installation
 
