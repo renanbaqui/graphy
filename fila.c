@@ -9,7 +9,7 @@ struct par{
 
 int fila[1000];
 int aux[1000];
-int pfila = -1; //punteiro de fila.
+int pfila = -1;     //ponteiro de fila.
 
 
 
