@@ -11,7 +11,7 @@ OEG is a computational implementation of finite graph algorithms (represented se
 
 ## Installation
 
-Compile with [GCC](https://gcc.gnu.org/) and execute.
+Compile *lista.c* or *matriz.c* with [GCC](https://gcc.gnu.org/) and execute.
 
 ## Contributing
 Pull requests are welcome.
