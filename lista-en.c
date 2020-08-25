@@ -60,14 +60,14 @@ void prepare_dump_json(int *ve,int **ar, struct ArestaRotulada** E, int n, int m
 void ImprimeVizinhosDeVertice(struct vertice*, int);
 int prepare_fordfulk(int *ve,int **ar,int *ca, struct ArestaRotulada** E, int vertices, int arestas, int debug, int s, int t);
 
-int DEBUG_messages = 1;		// Para fazer o debug de algumas mensagens.
+int DEBUG_messages = 1;			// To debug some messages
 int aux = 0; 
 
 int main(int argc,char* argv[])
 {
 	int LIMITE_ARESTAS = 400000;
 	int v[1000];
-    	int c[10000]; 		// Limite para capacidade de arestas em grafos direcionados, o limite de arestas é 10000.
+    	int c[10000]; 			
     	int json_ = 0;
 
     	int **a = NULL;
@@ -113,12 +113,12 @@ int main(int argc,char* argv[])
     }
     if(argc>=4) 
     {
-	DEBUG_messages = atoi(argv[3]); 	// O terceiro parâmetro permite enviar como saida somente o tempo de execução.
+	DEBUG_messages = atoi(argv[3]); 		// The third parameter allows to output only the execution time
     }
 
     char json_ext[] = ".json"; 
     						
-    if(strstr(argv[1],json_ext)==NULL){		//Se o parametro tem extensão .json, então processa com funções de parse.c (incluido com header).
+    if(strstr(argv[1],json_ext)==NULL){			// If the parameter has .json formatting, then processes parse.c functions (included in header).
       if(DEBUG_messages==1) printf("Arquivo txt\n");
     }else{
       if(DEBUG_messages==1) printf("Arquivo json\n");
@@ -858,8 +858,8 @@ void InsereVizinhoFimCapacidade(struct vizinhos** p, int v, int capacidade)
 
 void AdicionaArestaDirecionado(struct vertice** p, int u, int v, int c)
 {
-    // Somente incluimos o vizinho no vertice u porque é grafo direcionado.
-    struct vertice* VerticeU = BuscaVertice(*p, u);
+    
+    struct vertice* VerticeU = BuscaVertice(*p, u);	// Only the vertex (node) neighbour is included because it is a directed graph 
     
      
     struct vizinhos* vizinhoU= BuscaVizinho(VerticeU->listavizinhos,v);
@@ -871,24 +871,24 @@ void AdicionaArestaDirecionado(struct vertice** p, int u, int v, int c)
       vizinhoU->capacidade = c;
     }
 
-    // Para a aresta inversa, a criamos mas colocamos capacidade 0, pois o algoritmo precisa atualizar esta 
-    // capacidade inversa
+    // For the reverse edge, we created it but put capacity 0, because the algorithm needs to update this inverse capability
     
     struct vertice* VerticeV = BuscaVertice(*p, v);
     struct vizinhos* vizinhoV= BuscaVizinho(VerticeV->listavizinhos,u);
     if(vizinhoV==NULL){
      
       InsereVizinhoFimCapacidade( &(VerticeV->listavizinhos), u, 0);
+    
     }else{
      
       
     }
-    
-   
+       
 }
 
-// Retorna 1 se existe um caminho da fonte s até fonte t no grafo residual.  
-// Também preenche o pai (parent[]) para guardar o caminho.
+// Returns 1 if there is a path from the source 's' to 't' in the remaining graph  
+// It also fills in the parent (parent []) to save the path.
+
 int BuscaLarguraFord(struct vertice* ListaVerticeDir, int s, int t, int parent[], int vertices) 
 { 
   if(DEBUG_messages==3) printf("Busca?: s=%d t=%d\n",s,t);
@@ -907,10 +907,10 @@ int BuscaLarguraFord(struct vertice* ListaVerticeDir, int s, int t, int parent[]
   while (!filaVazia()) 
   { 
   int u = sacaFila();
-  	  //if(DEBUG_messages==3) printf("Removo o vertice:%d\n",u);
-      //if(DEBUG_messages==3) printFila();
+  			//if(DEBUG_messages==3) printf("Removo o vertice:%d\n",u);
+      			//if(DEBUG_messages==3) printFila();
       struct vertice* VerticeU = BuscaVertice(ListaVerticeDir, u);
-      //printf("--->%d\n",VerticeV->valor);
+      			//printf("--->%d\n",VerticeV->valor);
       struct vizinhos* p = VerticeU->listavizinhos;
 
       while(p){
