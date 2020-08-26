@@ -118,7 +118,7 @@ int main(int argc,char* argv[])
 
     char json_ext[] = ".json"; 
     						
-    if(strstr(argv[1],json_ext)==NULL){			// If the parameter has .json formatting, then processes parse.c functions (included in header).
+    if(strstr(argv[1],json_ext)==NULL){			// If the parameter has .json formatting, then processes parse.c functions (included in header)
       if(DEBUG_messages==1) printf("Arquivo txt\n");
     }else{
       if(DEBUG_messages==1) printf("Arquivo json\n");
@@ -886,8 +886,8 @@ void AdicionaArestaDirecionado(struct vertice** p, int u, int v, int c)
        
 }
 
-// Returns 1 if there is a path from the source 's' to 't' in the remaining graph  
-// It also fills in the parent (parent []) to save the path.
+// Returns '1' if there is a path from the source 's' to 't' in the remaining graph  
+// It also fills in the parent (parent []) to save the path
 
 int BuscaLarguraFord(struct vertice* ListaVerticeDir, int s, int t, int parent[], int vertices) 
 { 
@@ -1010,8 +1010,6 @@ int prepare_fordfulk(int *ve,int **ar,int *ca, struct ArestaRotulada** E, int ve
       AdicionaArestaDirecionado(&ListaVerticeDir, (*E)[i].v1, (*E)[i].v2, ca[i]);
       
     }
-    
-
 	//ImprimeGrafo(ListaVerticeDir);
 	return fordFulkerson(ListaVerticeDir, s, t, debug, vertices,arestas); 
 	
