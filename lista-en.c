@@ -59,7 +59,7 @@ void prepare_dump_json(int *ve,int **ar, struct ArestaRotulada** E, int n, int m
 void ImprimeVizinhosDeVertice(struct vertice*, int);
 int prepare_fordfulk(int *ve,int **ar,int *ca, struct ArestaRotulada** E, int vertices, int arestas, int debug, int s, int t);
 
-int DEBUG_messages = 1;			// To debug some messages
+int DEBUG_messages = 1;				// To debug some messages
 int aux = 0; 
 
 int main(int argc,char* argv[])
@@ -105,7 +105,7 @@ int main(int argc,char* argv[])
 
     if(argc<3) 
     { 
-	printf("Parametros vazios: Execute assim: matriz NOME_ARQUIVO METODO");
+	printf("Empty parameters. Execute like this: matriz FILE_NAME METHOD");
 	return 0;
     }
     if(argc>=4) 
@@ -116,9 +116,9 @@ int main(int argc,char* argv[])
     char json_ext[] = ".json"; 
     						
     if(strstr(argv[1],json_ext)==NULL){			// If the parameter has .json formatting, then processes parse.c functions (included in header)
-      if(DEBUG_messages==1) printf("Arquivo txt\n");
+      if(DEBUG_messages==1) printf(".txt file\n");
     }else{
-      if(DEBUG_messages==1) printf("Arquivo json\n");
+      if(DEBUG_messages==1) printf(".json file\n");
       json_ = 1;
       if(strcmp(argv[2],FordFulk_)==0){
 			  parse_json_capacity(v,a,c,&VerticesLidos,&arestas,argv[1],DEBUG_messages);
@@ -131,8 +131,8 @@ int main(int argc,char* argv[])
       //abre arquivo, le N e M
       Arquivo = fopen (argv[1],"r");
       fscanf(Arquivo, "%d\t%d", &VerticesLidos , &arestas);
-      if(DEBUG_messages==1) printf("Lendo arquivo: %s\n",argv[1]);
-      if(DEBUG_messages==1) printf("Vertices: %d - Arestas: %d\n",VerticesLidos,arestas);
+      if(DEBUG_messages==1) printf("Reading file: %s\n",argv[1]);
+      if(DEBUG_messages==1) printf("Vertices: %d - Edges: %d\n",VerticesLidos,arestas);
         
     }
     
@@ -171,7 +171,7 @@ int main(int argc,char* argv[])
   clock_t tempo1; 
 	tempo1 = clock();
 	
-    if(DEBUG_messages==1) printf("Executando: %s\n",argv[2]);
+    if(DEBUG_messages==1) printf("Executing: %s\n",argv[2]);
 		if(strcmp(argv[2],BuscaGrafo_)==0){
 			BuscaGrafo(0, &VerticesVisitados, &ListaArestas, arestas);
 		}
@@ -291,14 +291,14 @@ int main(int argc,char* argv[])
 		}
     else if(strcmp(argv[2],FordFulk_)==0){
       int result = prepare_fordfulk(v, a, c, &ListaArestas, VerticesLidos, arestas, DEBUG_messages, atoi(argv[4]), atoi(argv[5]));
-			if(DEBUG_messages==3) printf("O maximo fluxo possivel para o grafo eh: %d\n",result);
+			if(DEBUG_messages==3) printf("The maximum flow possible for this graph is: %d\n",result);
       
 		}
 		
   double toMiliseconds = 1000/CLOCKS_PER_SEC;
   double interval = (clock() - tempo1) * toMiliseconds;
   
-  if(DEBUG_messages==1) printf("Tempo de %s: %.3f\n",argv[2],interval);
+  if(DEBUG_messages==1) printf("Time of %s: %.3f\n",argv[2],interval);
   if(DEBUG_messages==0) printf("%.3f\n",interval);
   if(DEBUG_messages==4) printf("%d,%.3f\n",VerticesLidos,interval);
   
