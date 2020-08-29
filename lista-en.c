@@ -14,7 +14,6 @@ struct vizinhos
     struct vizinhos* prox;
 };
 
-
 struct vertice
 {
     int valor;
@@ -75,9 +74,7 @@ int main(int argc,char* argv[])
     	int i_;
     	for (i_ = 0; i_ < LIMITE_ARESTAS; i_++) {
       		a[i_] = (int *)malloc(2 * sizeof(int));
-    }
-
-    
+    }    
    
 
     FILE* Arquivo = NULL; struct vertice* ListaVertice = NULL; 
@@ -926,7 +923,7 @@ int BuscaLarguraFord(struct vertice* ListaVerticeDir, int s, int t, int parent[]
         p = p->prox;
       }
   }
-  // Se o fim (o vertice t) foi visitado começando da fonte (s), então retorna 1, senão 0.
+  // If the end (vertex 't') was visited starting from source 's', then returns 1, else 0
   return (visited[t] == 1); 
 
 }
@@ -940,15 +937,15 @@ int min(int a, int b){
 int fordFulkerson(struct vertice* ListaVerticeDir, int s, int t, int debug, int vertices, int arestas) 
 { 
     int u, v, i, j; 
-    int parent[vertices];  	// Array que sera preenchido por BuscaLarguraFord para guardar o caminho. 
-    int max_flow = 0;  		// Não tem fluxo inicialmente.
+    int parent[vertices];  	// Array that will be filled by "BuscaLarguraFord" to save the path 
+    int max_flow = 0;  		// There is no flow initially
   
    int count = 0;
-    // Aumenta o fluxo enquanto existe um caminho da fonte (s) até o fim (t). 
+    // Increases the flow while there is a path from source (s) to end (t) 
     while (BuscaLarguraFord(ListaVerticeDir, s, t, parent, vertices)) 
     { 
         // Achar a capacidade minima residual das arestas ao longo do 
-        // caminho preenchido por BuscaLarguraFord. 
+        // Path filled by "BuscaLarguraFord". 
         int path_flow = INT_MAX; 
         for (v=t; v!=s; v=parent[v]) 
         { 
