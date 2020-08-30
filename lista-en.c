@@ -201,7 +201,7 @@ int main(int argc,char* argv[])
           ExcluiVertice(&ListaVertice,atoi(argv[5]),&VerticesLidos);
       }
       else{
-          // Exclui o último vertice lido.
+          		// Deletes the last vertex (node) read
 			    ExcluiVertice(&ListaVertice,VerticesLidos-1,&VerticesLidos);
       }
       
@@ -252,20 +252,20 @@ int main(int argc,char* argv[])
 		}
 		else if (strcmp(argv[2],EhConexo_)==0){ 
     	conexo = EhConexo(0, &VerticesVisitados, &ListaArestas, VerticesLidos, arestas);
-      if(DEBUG_messages==3) printf("Conexo?: %d\n",conexo);
+      if(DEBUG_messages==3) printf("Connected?: %d\n",conexo);
     }
 		else if (strcmp(argv[2],EhArvore_)==0){
 			arvore = EhArvore(0, &VerticesVisitados, &ListaArestas, VerticesLidos, arestas);
-      if(DEBUG_messages==3) printf("Arvore?: %d\n",arvore);
+      if(DEBUG_messages==3) printf("Tree?: %d\n",arvore);
     
 		}
 		else if (strcmp(argv[2],TemCiclo_)==0){
 			ciclo = TemCiclo(&VerticesVisitados, &ListaArestas, VerticesLidos, arestas);
-      if(DEBUG_messages==3) printf("Ciclo?: %d\n",ciclo);  
+      if(DEBUG_messages==3) printf("Cycle?: %d\n",ciclo);  
 		}
 		else if (strcmp(argv[2],EhFloresta_)==0){
 			floresta = EhFloresta(&VerticesVisitados, &ListaArestas, VerticesLidos, arestas);
-      if(DEBUG_messages==3) printf("Floresta?: %d\n",floresta);
+      if(DEBUG_messages==3) printf("Forest?: %d\n",floresta);
 		}
     else if(strcmp(argv[2],ObterFlorestaGeradora_)==0){
       ObterFlorestaGeradora(&VerticesVisitados, &ListaArestas, &FlorestaGeradora, arestas, VerticesLidos);
@@ -366,7 +366,7 @@ void InsereVerticeFim(struct vertice** p, int v, int* N)
 
     else
     {
-        if(DEBUG_messages==3 && aux==1) printf("Inserindo Vertice no Fim.\n");
+        if(DEBUG_messages==3 && aux==1) printf("Inserting vertex (node) at the end.\n");
         struct vertice* elem = criaVertice(v);
         elem->prox = NULL;
         elem->listavizinhos = NULL;
