@@ -132,7 +132,7 @@ int main(int argc,char* argv[])
       Arquivo = fopen (argv[1],"r");
       fscanf(Arquivo, "%d\t%d", &VerticesLidos , &arestas);
       if(DEBUG_messages==1) printf("Reading file: %s\n",argv[1]);
-      if(DEBUG_messages==1) printf("Vertices: %d - Edges: %d\n",VerticesLidos,arestas);
+      if(DEBUG_messages==1) printf("Vertices (nodes): %d - Edges: %d\n",VerticesLidos,arestas);
         
     }
     
@@ -465,7 +465,7 @@ void ExcluiVertice(struct vertice** p, int v, int* N)
       ExcluiVizinho( &((*p)->listavizinhos), v );
       if((*p)->valor == v)
       {
-        if(DEBUG_messages==3) printf("Apagando vertice %d\n",v);
+        if(DEBUG_messages==3) printf("Deleting vertex (nove) %d\n",v);
         struct vertice* e = *p;
         *p = e->prox;
         free(e);
@@ -546,7 +546,7 @@ void ImprimeVizinhosDeVertice(struct vertice* p, int v)
 void BuscaGrafo(int r, int** V, struct ArestaRotulada** E, int m)
 {
   (*V)[r] = 1; int i;
-  if(DEBUG_messages==3) printf("Visito o vertice %d\n",r);
+  if(DEBUG_messages==3) printf("Visiting the vertex (node) %d\n",r);
 
   for(i = 0; i < m; i++)
   {
