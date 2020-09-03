@@ -359,7 +359,7 @@ void InsereVerticeFim(struct vertice** p, int v, int* N)
 {
     if (*p)
     {
-        if(DEBUG_messages==3 && aux==1) printf("em elemento = %d\n",(*p)->valor);
+        if(DEBUG_messages==3 && aux==1) printf("in element = %d\n",(*p)->valor);
         InsereVerticeFim(&((*p)->prox), v, N);
     }
 
