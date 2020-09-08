@@ -164,8 +164,7 @@ int main(int argc,char* argv[])
       ListaArestas[i].v2 = v2;
     }
 
-
-
+	
   int arvore, conexo, ciclo, floresta;
 
   clock_t tempo1; 
@@ -460,7 +459,7 @@ void ExcluiVertice(struct vertice** p, int v, int* N)
 {
     if(*p)
     {
-      if(DEBUG_messages==3) printf("ExcluiVertice %d, estou em %d\n",v,(*p)->valor);
+      if(DEBUG_messages==3) printf("ExcluiVertice %d, currently in %d\n",v,(*p)->valor);
       // ExcluiVertice( &((*p)->prox), v, N);
       ExcluiVizinho( &((*p)->listavizinhos), v );
       if((*p)->valor == v)
