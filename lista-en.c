@@ -549,15 +549,15 @@ void BuscaGrafo(int r, int** V, struct ArestaRotulada** E, int m)
 
   for(i = 0; i < m; i++)
   {
-    if(DEBUG_messages==3) printf("Vamos da aresta %d, de %d a %d\n",i,(*E)[i].v1,(*E)[i].v2);
+    if(DEBUG_messages==3) printf("Going from edge %d, from %d to %d\n",i,(*E)[i].v1,(*E)[i].v2);
     if((*E)[i].explorada == 0 && (*V)[(*E)[i].v1] == 1)
     {
       (*E)[i].explorada = 1;
 
       if( (*V)[(*E)[i].v2] == 0 )
       {
-        if(DEBUG_messages==3) printf("Visito o vertice %d\n",(*E)[i].v2);
-        if(DEBUG_messages==3) printf("Descoberta aresta %d-%d\n",(*E)[i].v1,(*E)[i].v2);
+        if(DEBUG_messages==3) printf("Visiting vertex (node) %d\n",(*E)[i].v2);
+        if(DEBUG_messages==3) printf("Discovering edge %d-%d\n",(*E)[i].v1,(*E)[i].v2);
         (*V)[(*E)[i].v2] = 1;
         
         (*E)[i].descoberta = 1;
@@ -570,8 +570,8 @@ void BuscaGrafo(int r, int** V, struct ArestaRotulada** E, int m)
       
       if( (*V)[(*E)[i].v1] == 0 )
       {
-        if(DEBUG_messages==3) printf("Visito o vertice %d\n",(*E)[i].v1);
-        if(DEBUG_messages==3) printf("Descoberta aresta %d-%d\n",(*E)[i].v1,(*E)[i].v2);
+        if(DEBUG_messages==3) printf("Visiting vertex (node) %d\n",(*E)[i].v1);
+        if(DEBUG_messages==3) printf("Discovering edge %d-%d\n",(*E)[i].v1,(*E)[i].v2);
         (*V)[(*E)[i].v1] = 1;
         
         (*E)[i].descoberta = 1;
@@ -616,7 +616,7 @@ int EhConexo(int r, int** V, struct ArestaRotulada** E, int n, int m)
   {
     if ((*V)[i] == 0)
     {
-      if(DEBUG_messages==3) printf("Vertice não visitado: %d\n",i);
+      if(DEBUG_messages==3) printf("Unvisited vertex (node): %d\n",i);
       return 0;
     }
   }
@@ -634,11 +634,11 @@ int TemCiclo(int** V, struct ArestaRotulada** E, int n, int m)
   {
     if((*E)[i].descoberta == 0)
     {
-      if(DEBUG_messages==3) printf("Aresta nao descoberta %d-%d\n",(*E)[i].v1,(*E)[i].v2);
+      if(DEBUG_messages==3) printf("Undiscovered edge %d-%d\n",(*E)[i].v1,(*E)[i].v2);
       return 1;
     }
   }
-  if(DEBUG_messages==3) printf("Todas arestas descobertas.\n");
+  if(DEBUG_messages==3) printf("All edges have been discovered.\n");
   return 0;
 }
 
