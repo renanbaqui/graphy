@@ -467,10 +467,7 @@ void ExcluiVertice(struct vertice** p, int v, int* N)
         if(DEBUG_messages==3) printf("Deleting vertex (nove) %d\n",v);
         struct vertice* e = *p;
         *p = e->prox;
-        free(e);
-
-
-        
+        free(e);        
       }
 
       else
@@ -533,7 +530,7 @@ void ImprimeVizinhosDeVertice(struct vertice* p, int v)
   if (p)
   {
     if(p->valor==v){
-      printf("Vizinhos do vertice %d\n",v);
+      printf("Vertex (node) neighbourhood %d\n",v);
       ImprimeVizinhos(p->listavizinhos);
       printf("\n");
     }else{
