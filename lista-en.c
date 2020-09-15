@@ -743,7 +743,7 @@ void DeterminarDistancias(int r, int** V, struct ArestaRotulada** E, int n, int 
 			struct par casal = sacaFila2();
 			int u = casal.value1;
 			int nivel = casal.value2;
-			if(DEBUG_messages==3) printf("Removo o vertice:%d, nivel=%d\n",u,nivel);
+			if(DEBUG_messages==3) printf("Removing the vertex (node):%d, nivel=%d\n",u,nivel);
       if(DEBUG_messages==3) printFila();
       struct vertice* VerticeV = BuscaVertice(p, u);
       // printf("--->%d\n",VerticeV->valor);
