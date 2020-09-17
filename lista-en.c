@@ -503,12 +503,12 @@ void ImprimeVizinhos(struct vizinhos* p)
 {
   if (p)
   {
-    printf("Vertice %d capacidade: %d\n", p->valor, p->capacidade);
+    printf("Vertex (node) %d capacity: %d\n", p->valor, p->capacidade);
     ImprimeVizinhos(p->prox);
   }
   else
   {
-    printf("Sem mais vizinhos.\n");
+    printf("There are no more neighbours.\n");
   }
 }
 
