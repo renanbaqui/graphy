@@ -703,7 +703,7 @@ void BuscaLargura(int r, int** V, struct ArestaRotulada** E, int n, int m, struc
 
     while(!filaVazia()){
 			int u = sacaFila();
-			if(DEBUG_messages==3) printf("Removo o vertice:%d\n",u);
+			if(DEBUG_messages==3) printf("Removing vertex (node):%d\n",u);
       if(DEBUG_messages==3) printFila();
       struct vertice* VerticeV = BuscaVertice(p, u);
       // printf("--->%d\n",VerticeV->valor);
