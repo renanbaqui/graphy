@@ -688,7 +688,7 @@ void ObterFlorestaGeradora(int** V, struct ArestaRotulada** E, struct vertice** 
   {
     if((*E)[i].descoberta == 1)
     {
-      if(DEBUG_messages==3) printf("Adiciono aresta a floresta geradora %d,%d\n", (*E)[i].v1, (*E)[i].v2);
+      if(DEBUG_messages==3) printf("Add edge to the spanning forest %d,%d\n", (*E)[i].v1, (*E)[i].v2);
       AdicionaAresta( T, (*E)[i].v1, (*E)[i].v2 );
     }
   }
