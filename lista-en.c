@@ -761,7 +761,7 @@ void DeterminarDistancias(int r, int** V, struct ArestaRotulada** E, int n, int 
             (*E)[w].descoberta =1;
             (*V)[w] = 1;
             (*D)[w]=nivel;
-            if(DEBUG_messages==3) printf("Insiro:%d\n",w);
+            if(DEBUG_messages==3) printf("Inserting:%d\n",w);
             entraFila2(w,nivel+1);
         }
         p = p->prox;
