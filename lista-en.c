@@ -720,7 +720,7 @@ void BuscaLargura(int r, int** V, struct ArestaRotulada** E, int n, int m, struc
             (*E)[w].explorada =1;
             (*E)[w].descoberta =1;
             (*V)[w] = 1;
-            if(DEBUG_messages==3) printf("Insiro:%d\n",w);
+            if(DEBUG_messages==3) printf("Inserting:%d\n",w);
             entraFila(w);
         }
         p = p->prox;
@@ -743,7 +743,7 @@ void DeterminarDistancias(int r, int** V, struct ArestaRotulada** E, int n, int 
 			struct par casal = sacaFila2();
 			int u = casal.value1;
 			int nivel = casal.value2;
-			if(DEBUG_messages==3) printf("Removing the vertex (node):%d, nivel=%d\n",u,nivel);
+			if(DEBUG_messages==3) printf("Removing the vertex (node):%d, level=%d\n",u,nivel);
       if(DEBUG_messages==3) printFila();
       struct vertice* VerticeV = BuscaVertice(p, u);
       // printf("--->%d\n",VerticeV->valor);
@@ -783,7 +783,7 @@ void BuscaProfundidade(int r, int** V, struct ArestaRotulada** E, int n, int m, 
 
 
 void BuscaProfundidadeVisita(int u, int** V, struct ArestaRotulada** E, int n, int m, struct vertice* verti){
-  if(DEBUG_messages==3) printf("Visita:%d\n",u);
+  if(DEBUG_messages==3) printf("Visiting:%d\n",u);
 	(*V)[u] = 1;
   struct vertice* VerticeV = BuscaVertice(verti, u);
   struct vizinhos* p = VerticeV->listavizinhos;
