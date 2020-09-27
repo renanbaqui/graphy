@@ -128,7 +128,7 @@ int main(int argc,char* argv[])
     }
 
     if(json_==0){
-      //abre arquivo, le N e M
+      //opens file, reads N and M
       Arquivo = fopen (argv[1],"r");
       fscanf(Arquivo, "%d\t%d", &VerticesLidos , &arestas);
       if(DEBUG_messages==1) printf("Reading file: %s\n",argv[1]);
