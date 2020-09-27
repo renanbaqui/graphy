@@ -895,7 +895,7 @@ int BuscaLarguraFord(struct vertice* ListaVerticeDir, int s, int t, int parent[]
   visited[s] = 1; 
   parent[s] = -1; 
 
-  // Busca por largura acrescentando os detalhes da capacidade e o pai (parent). 
+  // Breadth-first search by adding the details of the capacity and the parent 
   while (!filaVazia()) 
   { 
   int u = sacaFila();
