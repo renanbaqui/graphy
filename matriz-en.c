@@ -34,7 +34,7 @@ int fordFulkerson(int **, int , int , int, int);
 int main(int argc,char* argv[]) {
 	int LIMITE_ARESTAS = 400000;
 	int v[1000];
-	int c[10000]; //Limite para capacidade de arestas em grafos direcionados. Para eles o limite de arestas é 10000.
+	int c[10000]; 	//Edge capacity limit in directed graphs. Edge limit for directed graphs is 10,000.
   	int json_ = 0;
 
 	int **a = NULL;
@@ -74,7 +74,7 @@ int main(int argc,char* argv[]) {
 	char FordFulk_[] = "FordFulk";
 
 	if(argc<3){ 
-		printf("Parametros vazios: Execute assim: matriz NOME_ARQUIVO METODO");
+		printf("Empty paremeters: Type this: matriz-en NAME_FILE METHOD");
 		return 0;
 	}
 	if(argc>=4){ 
