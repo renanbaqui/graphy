@@ -78,13 +78,13 @@ int main(int argc,char* argv[]) {
 		return 0;
 	}
 	if(argc>=4){ 
-		// O terceiro parâmetro permite enviar como saida somente o tempo de execução.
+		// The third parameter allows only the execution time to be sent as output.
 		DEBUG_messages = atoi(argv[3]);
 	}
 
 
     char json_ext[] = ".json"; 
-    // Se o parametro tem extensão .json, então processa com funções de parse.c (incluido com header).
+    // If the parameter has a .json extension, then it is processed with parse.c functions (included with header).
     if(strstr(argv[1],json_ext)==NULL){
       	if(DEBUG_messages==1) printf("Arquivo txt\n");
     }else{
