@@ -517,7 +517,7 @@ void ImprimeGrafo(struct vertice* p)
 {
   if (p)
   {
-    printf("Vizinhos do vertice %d:\n", p->valor);
+    printf("Vertex (node) neighbours %d:\n", p->valor);
     ImprimeVizinhos(p->listavizinhos);
     printf("\n\n");
     ImprimeGrafo(p->prox);
