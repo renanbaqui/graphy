@@ -983,8 +983,9 @@ int fordFulkerson(struct vertice* ListaVerticeDir, int s, int t, int debug, int 
 }
 
 int prepare_fordfulk(int *ve,int **ar,int *ca, struct ArestaRotulada** E, int vertices, int arestas, int debug, int s, int t){
-	// Criamos uma estrutura adicional para um grafo direcionado com lista, independente do grafo já existente
-  	// para os outros métodos.
+	// We createad an additional structure for a directed graph, independently if said graph already exists 
+	// for other functions / methods
+	
   int i;
   int aux;
   struct vertice* ListaVerticeDir = NULL;
