@@ -720,7 +720,7 @@ void BuscaLargura(int r, int** V, struct ArestaRotulada** E, int n, int m, struc
             (*E)[w].explorada =1;
             (*E)[w].descoberta =1;
             (*V)[w] = 1;
-            if(DEBUG_messages==3) printf("Inserting:%d\n",w);
+            if(DEBUG_messages==3) printf("Inserting: %d\n",w);
             entraFila(w);
         }
         p = p->prox;
@@ -808,7 +808,7 @@ void prepare_dump_json(int *ve,int **ar,struct ArestaRotulada** E, int n, int m,
 	int aresta = 0;
   int vertice = 0;
   while(p){
-    if(DEBUG_messages==3) printf("Revisando vertice %d\n",p->valor);
+    if(DEBUG_messages==3) printf("Revisiting vertex (node) %d\n",p->valor);
     int v =  p->valor;
     vertice++;
     struct vizinhos* q = p->listavizinhos;    
