@@ -951,7 +951,7 @@ int fordFulkerson(struct vertice* ListaVerticeDir, int s, int t, int debug, int 
             path_flow = min(path_flow, vizinhoV->capacidade); 
         } 
         if(DEBUG_messages==3) printf("path_flow: %d \n",path_flow);
-        // Atualizamos a capacidades residuais das arestas e arestas reversas
+        // Updated Atualizamos a capacidades residuais das arestas e arestas reversas
         // ao longo do caminho.
         for (v=t; v != s; v=parent[v]) 
         { 
