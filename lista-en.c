@@ -951,8 +951,8 @@ int fordFulkerson(struct vertice* ListaVerticeDir, int s, int t, int debug, int 
             path_flow = min(path_flow, vizinhoV->capacidade); 
         } 
         if(DEBUG_messages==3) printf("path_flow: %d \n",path_flow);
-        // Updated Atualizamos a capacidades residuais das arestas e arestas reversas
-        // ao longo do caminho.
+        // Updated the residual capacities of regular edges and reverse edges along the way
+	    
         for (v=t; v != s; v=parent[v]) 
         { 
             u = parent[v];
@@ -968,11 +968,11 @@ int fordFulkerson(struct vertice* ListaVerticeDir, int s, int t, int debug, int 
             
         } 
   
-        // Acrescentamos o caminho do fluxo ao fluxo total.
+        // Added flux path to total flux.
         max_flow += path_flow; 
         count++;
         if(count>4200000){
-          printf("Superado numero maximo de iterações.\n");  
+          printf("Maximum iteration limit exceeded.\n");  
           break;
         }
     } 
