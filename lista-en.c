@@ -59,7 +59,7 @@ void prepare_dump_json(int *ve,int **ar, struct ArestaRotulada** E, int n, int m
 void ImprimeVizinhosDeVertice(struct vertice*, int);
 int prepare_fordfulk(int *ve,int **ar,int *ca, struct ArestaRotulada** E, int vertices, int arestas, int debug, int s, int t);
 
-int DEBUG_messages = 1;				// Variable created to debug some messages
+int DEBUG_messages = 1;		// Variable created to debug some messages
 int aux = 0; 
 
 int main(int argc,char* argv[])
