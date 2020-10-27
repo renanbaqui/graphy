@@ -33,6 +33,7 @@ struct vizinhos* criaVizinho(int);
 struct vertice* criaVertice(int);
 struct vertice* BuscaVertice(struct vertice*, int);
 struct vizinhos* BuscaVizinho(struct vizinhos*, int);
+
 void LimpaListaVertice(struct vertice **);
 void LimpaListaVizinhos(struct vizinhos **);
 void InsereVerticeFim(struct vertice**, int, int*);
