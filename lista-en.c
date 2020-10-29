@@ -540,6 +540,7 @@ void ImprimeVizinhosDeVertice(struct vertice* p, int v)
   }
 }
 
+
 void BuscaGrafo(int r, int** V, struct ArestaRotulada** E, int m)
 {
   (*V)[r] = 1; int i;
@@ -577,7 +578,6 @@ void BuscaGrafo(int r, int** V, struct ArestaRotulada** E, int m)
     }
   }
 }
-
 
 
 void BuscaCompleta(int** V, struct ArestaRotulada** E, int m, int n)
@@ -729,9 +729,7 @@ void BuscaLargura(int r, int** V, struct ArestaRotulada** E, int n, int m, struc
 
 	}
  // &(VerticeU->listavizinhos)
-
 }
-
 
 
 void DeterminarDistancias(int r, int** V, struct ArestaRotulada** E, int n, int m, struct vertice* p, int** D) {
