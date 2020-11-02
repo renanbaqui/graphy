@@ -957,12 +957,12 @@ int fordFulkerson(struct vertice* ListaVerticeDir, int s, int t, int debug, int 
             u = parent[v];
             struct vertice* verticeU = BuscaVertice(ListaVerticeDir,u);
             struct vizinhos* vizinhoV= BuscaVizinho(verticeU->listavizinhos,v); 
-            if(DEBUG_messages==3) printf("Capacidade de %d-%d: %d - %d \n",u,v,vizinhoV->capacidade,path_flow);
+            if(DEBUG_messages==3) printf("Capacity of %d-%d: %d - %d \n",u,v,vizinhoV->capacidade,path_flow);
             vizinhoV->capacidade -= path_flow; 
               
             struct vertice* verticeV = BuscaVertice(ListaVerticeDir,v);
             struct vizinhos* vizinhoU= BuscaVizinho(verticeV->listavizinhos,u); 
-            if(DEBUG_messages==3) printf("Capacidade de %d-%d: %d + %d \n",v,u,vizinhoU->capacidade,path_flow);
+            if(DEBUG_messages==3) printf("Capacity of %d-%d: %d + %d \n",v,u,vizinhoU->capacidade,path_flow);
             vizinhoU->capacidade += path_flow; 
             
         } 
