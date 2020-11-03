@@ -10,7 +10,6 @@ if len(sys.argv)>=2:
 
 print("Probabilidade de conexão: ",p)
 
-
 def execute(n,p):
     G= nx.erdos_renyi_graph(n,p) 
     data = json_graph.cytoscape_data(G)
@@ -32,7 +31,6 @@ def execute(n,p):
     json_["arestas"]=arestas
     with open('graph_'+str(num_vertex)+'.json', 'w') as json_file:  
         json.dump(json_, json_file)
-
 
 execute(5,p)
 execute(6,p)
