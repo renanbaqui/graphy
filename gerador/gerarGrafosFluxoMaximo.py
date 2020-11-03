@@ -6,7 +6,7 @@ import json
 import sys
 from operator import itemgetter, attrgetter, methodcaller
 
-#Execute script_name.py vertices arestas capacidad_mexima
+#Execute script_name.py vertices arestas maximum_capacity
 n = 9
 a = 40
 c = 20
@@ -16,7 +16,6 @@ if len(sys.argv)>=3:
     a = int(sys.argv[2])
 if len(sys.argv)>=4:
     c = int(sys.argv[3])
-
 
 def execute(n,a,cmax):
     G = nx.DiGraph()
@@ -58,7 +57,5 @@ def execute(n,a,cmax):
     print("max_flow:",flow_value)
     with open('graph_'+str(num_vertex)+"_"+str(flow_value)+"_"+str(min_)+"_"+str(max_)+'.json', 'w') as json_file:  
         json.dump(json_, json_file)
-
-
 
 execute(n,a,c)
