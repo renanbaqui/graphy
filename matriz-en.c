@@ -138,7 +138,7 @@ int main(int argc,char* argv[]) {
 
 
 
-    if(DEBUG_messages==1) printf("Executando: %s\n",argv[2]);
+    if(DEBUG_messages==1) printf("Running: %s\n",argv[2]);
 		if(strcmp(argv[2],BuscaGrafo_)==0){
 			BuscaGrafo(Matriz,vertices, Descoberta,Explorada,Visitado);	
 		}
@@ -249,13 +249,13 @@ int main(int argc,char* argv[]) {
 		}
 		if(strcmp(argv[2],FordFulk_)==0){
 			int result = prepare_fordfulk(v, a, c, &vertices, &arestas, DEBUG_messages, atoi(argv[4]), atoi(argv[5]));
-			if(DEBUG_messages==3) printf("O maximo fluxo possível eh: %d\n",result);
+			if(DEBUG_messages==3) printf("The maximum flow is: %d\n",result);
 		}
 		
 float toMiliseconds = 1000/CLOCKS_PER_SEC;
 float interval = (clock() - tempo1) * toMiliseconds;
   
-if(DEBUG_messages==1) printf("Tempo de %s: %.3f\n",argv[2],interval);
+if(DEBUG_messages==1) printf("Time of %s: %.3f\n",argv[2],interval);
 if(DEBUG_messages==0) printf("%.3f\n",interval);
 if(DEBUG_messages==4) printf("%d,%.3f\n",vertices,interval);
 
