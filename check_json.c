@@ -20,6 +20,6 @@ int main(int argc,char* argv[])
       a[i_] = (int *)malloc(2 * sizeof(int));
     }
     parse_json(v,a,&VerticesLidos,&arestas,argv[1],0);
-    printf("%d\t%d\t%d\n",VerticesLidos,arestas, VerticesLidos+arestas);
+    printf("%d\t%d\t%d\n",VerticesLidos,arestas,VerticesLidos+arestas);
     return 0;
 }
